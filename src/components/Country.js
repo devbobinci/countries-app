@@ -1,7 +1,4 @@
 import React, { useState } from "react";
-import CountryPage from "./CountryPage";
-import Route from "./Route";
-import Header from "./Header";
 
 const Country = ({
   result,
@@ -9,9 +6,7 @@ const Country = ({
   theme,
   search,
   setSelectedCountry,
-  selectedCountry,
   setSelectedCountryItem,
-  selectedCountryItem,
 }) => {
   const showCountry = () => {
     document

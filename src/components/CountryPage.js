@@ -3,9 +3,7 @@ import React, { useEffect } from "react";
 
 const CountryPage = ({
   result,
-  showPopulation,
   setSelectedCountry,
-  selectedCountry,
   setSelectedCountryItem,
   theme,
 }) => {
@@ -44,7 +42,11 @@ const CountryPage = ({
         return (
           <div
             key={country}
-            className={theme ? "border-country" : "border-country dark-mode"}
+            className={
+              theme
+                ? "border-country margin-on"
+                : "border-country margin-on dark-mode"
+            }
           >
             {country}
           </div>

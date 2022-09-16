@@ -5,7 +5,6 @@ import SearchBar from "./components/SearchBar";
 import Header from "./components/Header";
 import SelectRegion from "./components/SelectRegion";
 import RenderedCountries from "./components/RenderedCountries";
-import Route from "./components/Route";
 import CountryPage from "./components/CountryPage";
 
 const App = () => {
