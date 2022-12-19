@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 const Country = ({
   result,
@@ -25,18 +25,20 @@ const Country = ({
     <React.Fragment>
       <div
         onClick={showCountry}
-        key={search ? result.ccn3 : result.alpha2Code}
+        key={search ? result?.ccn3 : result.alpha2Code}
         className={theme ? "country" : "country dark-mode"}
       >
         <div
           className="country-flag"
           style={{
-            backgroundImage: `url(${search ? result.flag : result.flags.svg})`,
+            backgroundImage: `url(${
+              search ? result?.flag : result?.flags?.svg
+            })`,
           }}
         ></div>
         <div className={theme ? "country-info" : "country-info dark-mode"}>
           <h3 className={theme ? "country-name" : "country-name dark-mode"}>
-            {search ? result.name : result.name.common}
+            {search ? result?.name : result?.name?.common}
           </h3>
           <p
             className={
@@ -54,7 +56,7 @@ const Country = ({
                 : "country-detail country-region dark-mode"
             }
           >
-            Region: <span className="region">{result.region}</span>
+            Region: <span className="region">{result?.region}</span>
           </p>
           <p
             className={
@@ -63,7 +65,7 @@ const Country = ({
                 : "country-detail country-capital dark-mode"
             }
           >
-            Capital: <span className="capital">{result.capital}</span>
+            Capital: <span className="capital">{result?.capital}</span>
           </p>
         </div>
       </div>

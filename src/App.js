@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React, { useState } from "react";
 import sass from "./styles.scss";
 import SearchBar from "./components/SearchBar";
 import Header from "./components/Header";

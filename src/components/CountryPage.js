@@ -1,5 +1,4 @@
-import { isFocusable } from "@testing-library/user-event/dist/utils";
-import React, { useEffect } from "react";
+import React from "react";
 
 const CountryPage = ({
   result,
@@ -21,24 +20,28 @@ const CountryPage = ({
         .classList.remove("hide-container");
     };
 
-    const showPopulation = result.population.toLocaleString("en-US", {
+    const showPopulation = result?.population?.toLocaleString("en-US", {
       maximumFractionDigits: 2,
     });
 
-    const currency = Object.keys(result.currencies);
+    const currency = Object.keys(result?.currencies);
     const propertyCurrency = Object.values(currency);
-    const currencyName = Object.values(result.currencies[propertyCurrency]);
+    const currencyName = Object.values(result?.currencies[propertyCurrency]);
 
-    const languagesKey = Object.values(result.languages);
-    const renderedLanguages = languagesKey.join(", ");
+    const languagesKey = result.languages
+      ? Object.values(result?.languages)
+      : null;
+    const renderedLanguages = languagesKey ? languagesKey.join(", ") : null;
 
     const renderedLang = languagesKey.map((lang) => {
-      return lang.name;
+      return lang?.name;
     });
 
+    console.log(currencyName);
+
     let borderCountry;
-    if (result.borders) {
-      borderCountry = result.borders.map((country) => {
+    if (result?.borders) {
+      borderCountry = result?.borders.map((country) => {
         return (
           <div
             key={country}
@@ -73,7 +76,7 @@ const CountryPage = ({
           ></div>
           <div className="country-column-container">
             <h2 className={theme ? "country-name" : "country-name dark-mode"}>
-              {result.name.common ? result.name.common : result.name}
+              {result?.name?.common ? result?.name?.common : result?.name}
             </h2>
             <div className="country-info-container">
               <div className="country-page-info">
@@ -84,9 +87,9 @@ const CountryPage = ({
                 >
                   Native Name:{" "}
                   <span className="value">
-                    {result.nativeName
-                      ? result.nativeName
-                      : result.name.official}
+                    {result?.nativeName
+                      ? result?.nativeName
+                      : result?.name?.official}
                   </span>
                 </p>
                 <p
@@ -101,14 +104,14 @@ const CountryPage = ({
                     theme ? "country-detail" : "country-detail dark-mode"
                   }
                 >
-                  Region: <span className="value">{result.region}</span>
+                  Region: <span className="value">{result?.region}</span>
                 </p>
                 <p
                   className={
                     theme ? "country-detail" : "country-detail dark-mode"
                   }
                 >
-                  Sub Region: <span className="value">{result.subregion}</span>
+                  Sub Region: <span className="value">{result?.subregion}</span>
                 </p>
                 <p
                   className={
@@ -117,7 +120,7 @@ const CountryPage = ({
                 >
                   Capital:{" "}
                   <span className="value">
-                    {result.capital ? result.capital : null}
+                    {result?.capital ? result?.capital : null}
                   </span>
                 </p>
               </div>
@@ -131,7 +134,7 @@ const CountryPage = ({
                   Top Level Domain:
                   <span className="value">
                     {" "}
-                    {result.tld ? result.tld[0] : result.topLevelDomain[0]}
+                    {result?.tld ? result?.tld[0] : result?.topLevelDomain[0]}
                   </span>
                 </p>
                 <p
@@ -141,9 +144,9 @@ const CountryPage = ({
                 >
                   Currencies:{" "}
                   <span className="value">
-                    {!result.currencies[0]
+                    {!result?.currencies[0]
                       ? currencyName[0]
-                      : result.currencies[0].name}
+                      : result?.currencies[0]?.name}
                   </span>
                 </p>
                 <p
@@ -153,7 +156,7 @@ const CountryPage = ({
                 >
                   Languages:{" "}
                   <span className="value">
-                    {!result.languages[0]
+                    {!result?.languages[0]
                       ? renderedLanguages
                       : renderedLang.join(", ")}
                   </span>
@@ -165,7 +168,7 @@ const CountryPage = ({
                 Border Countries:
               </h3>
               <div className="border-countries">
-                {!result.borders ? ["No countries around"] : borderCountry}
+                {!result?.borders ? ["No countries around"] : borderCountry}
               </div>
             </div>
           </div>
